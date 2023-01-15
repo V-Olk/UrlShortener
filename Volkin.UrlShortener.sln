@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E5B244D-899E-4556-A2A7-673BEADB3E9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volkin.UrlGenerator", "Volkin.UrlGenerator", "{1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Application", "src\UrlGenerator\UrlGenerator.Application\Volkin.UrlGenerator.Application.csproj", "{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Webhost", "src\UrlGenerator\UrlGenerator.Webhost\Volkin.UrlGenerator.Webhost.csproj", "{591031CC-38DD-414A-A813-0074CCE37F31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.DataAccess", "src\UrlGenerator\UrlGenerator.DataAccess\Volkin.UrlGenerator.DataAccess.csproj", "{08A93E31-A449-48CA-80C9-1E120041A77F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Domain", "src\UrlGenerator\UrlGenerator.Domain\Volkin.UrlGenerator.Domain.csproj", "{841F73E9-F317-4F15-8C7A-6D4754EE3B83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{591031CC-38DD-414A-A813-0074CCE37F31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{591031CC-38DD-414A-A813-0074CCE37F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{591031CC-38DD-414A-A813-0074CCE37F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{591031CC-38DD-414A-A813-0074CCE37F31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A93E31-A449-48CA-80C9-1E120041A77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A93E31-A449-48CA-80C9-1E120041A77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A93E31-A449-48CA-80C9-1E120041A77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A93E31-A449-48CA-80C9-1E120041A77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2} = {4E5B244D-899E-4556-A2A7-673BEADB3E9F}
+		{EFB70CA6-CD31-4061-8292-AE4C9BEE511B} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
+		{591031CC-38DD-414A-A813-0074CCE37F31} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
+		{08A93E31-A449-48CA-80C9-1E120041A77F} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
+		{841F73E9-F317-4F15-8C7A-6D4754EE3B83} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {362B2D51-1A27-4ADD-B0E2-1FDA69C322CD}
+	EndGlobalSection
+EndGlobal
