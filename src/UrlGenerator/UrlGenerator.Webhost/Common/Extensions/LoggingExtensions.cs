@@ -5,14 +5,25 @@ namespace Volkin.UrlGenerator.Webhost.Common.Extensions
 {
     public static class LoggingExtensions
     {
-        public static void ConfigureSerilog()
+        public static IHostBuilder ConfigureSerilog(this IHostBuilder hostBuilder)
         {
-            string? environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            IConfigurationRoot? configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{environment}.json", true)
-                .Build();
+            return hostBuilder.UseSerilog((context, configuration) => configuration
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .MinimumLevel.Override("System", LogEventLevel.Error)
 
+                .Enrich.FromLogContext()
+                .Enrich.WithEnvironmentName()
+                .Enrich.WithMachineName()
+
+                .WriteTo.Console()
+                .WriteTo.Debug()
+
+                .ReadFrom.Configuration(context.Configuration));
+        }
+
+        public static void CreateBootstrapLogger()
+        {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
@@ -21,12 +32,11 @@ namespace Volkin.UrlGenerator.Webhost.Common.Extensions
                 .Enrich.FromLogContext()
                 .Enrich.WithEnvironmentName()
                 .Enrich.WithMachineName()
-                
+
                 .WriteTo.Console()
                 .WriteTo.Debug()
 
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
+                .CreateBootstrapLogger();
         }
     }
 }

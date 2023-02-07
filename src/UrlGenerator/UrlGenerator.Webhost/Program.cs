@@ -7,11 +7,17 @@ public static class Program
 {
     public static void Main(string[] args)
     {
+        LoggingExtensions.CreateBootstrapLogger();
+
+        Log.Information("Starting up");
+
         try
         {
             var app = CreateHostBuilder(args).Build();
 
             app.Run();
+
+            Log.Information("Stopped cleanly");
         }
         catch (Exception ex)
         {
@@ -26,19 +32,14 @@ public static class Program
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
         var builder = Host.CreateDefaultBuilder(args)
+            .ConfigureSerilog()
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
             });
 
-        builder.ConfigureLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddSerilog();
-        });
-
-        LoggingExtensions.ConfigureSerilog();
-
         return builder;
     }
+
+
 }
