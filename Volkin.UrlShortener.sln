@@ -15,6 +15,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.DataAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Domain", "src\UrlGenerator\UrlGenerator.Domain\Volkin.UrlGenerator.Domain.csproj", "{841F73E9-F317-4F15-8C7A-6D4754EE3B83}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volkin.UrlRedirector", "Volkin.UrlRedirector", "{0857E96D-2BE2-446A-BCB9-A2848329A6C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Application", "src\UrlRedirector\UrlRedirector.Application\Volkin.UrlRedirector.Application.csproj", "{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.DataAccess", "src\UrlRedirector\UrlRedirector.DataAccess\Volkin.UrlRedirector.DataAccess.csproj", "{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Domain", "src\UrlRedirector\UrlRedirector.Domain\Volkin.UrlRedirector.Domain.csproj", "{E6CD7424-C69A-496C-9F38-5D3929202C0C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Webhost", "src\UrlRedirector\UrlRedirector.Webhost\Volkin.UrlRedirector.Webhost.csproj", "{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +47,22 @@ Global
 		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{841F73E9-F317-4F15-8C7A-6D4754EE3B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6CD7424-C69A-496C-9F38-5D3929202C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6CD7424-C69A-496C-9F38-5D3929202C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6CD7424-C69A-496C-9F38-5D3929202C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6CD7424-C69A-496C-9F38-5D3929202C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +73,11 @@ Global
 		{591031CC-38DD-414A-A813-0074CCE37F31} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
 		{08A93E31-A449-48CA-80C9-1E120041A77F} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
 		{841F73E9-F317-4F15-8C7A-6D4754EE3B83} = {1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}
+		{0857E96D-2BE2-446A-BCB9-A2848329A6C7} = {4E5B244D-899E-4556-A2A7-673BEADB3E9F}
+		{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02} = {0857E96D-2BE2-446A-BCB9-A2848329A6C7}
+		{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22} = {0857E96D-2BE2-446A-BCB9-A2848329A6C7}
+		{E6CD7424-C69A-496C-9F38-5D3929202C0C} = {0857E96D-2BE2-446A-BCB9-A2848329A6C7}
+		{F614BFCF-E755-4F50-B6D1-72B7B619A0C7} = {0857E96D-2BE2-446A-BCB9-A2848329A6C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {362B2D51-1A27-4ADD-B0E2-1FDA69C322CD}
