@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+  urls-db-local:
+    image: postgres:15-alpine
+    container_name: urls-db-local
+    restart: always
+    volumes:
+      - urls-pgdata-local:/var/lib/postgresql/data
+      - ./init-urls-table.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=dbuser
+      - POSTGRES_DB=urls_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbuser -d urls_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - urls-shortener-local-network
+
+  pgbouncer-local:
+    image: edoburu/pgbouncer:1.18.0
+    volumes:
+      - ./userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    environment:
+       - DB_USER=dbuser
+       - DB_PASSWORD=docker
+       - DB_HOST=urls-db-local
+       - DB_NAME=urls_db
+       - POOL_MODE=transaction
+       - ADMIN_USERS=postgres,dbuser
+       - AUTH_TYPE=scram-sha-256
+    ports:
+      - 5435:5432
+    depends_on:
+      - urls-db-local
+    networks:
+      - urls-shortener-local-network
+
+volumes:
+  urls-pgdata-local:
+
+networks:
+  urls-shortener-local-network:

@@ -1,14 +1,24 @@
 ﻿using System.Reflection;
 using Volkin.UrlGenerator.Application.Common;
 using Volkin.UrlGenerator.DataAccess.Common;
+using Volkin.UrlGenerator.Domain.Options;
 using Volkin.UrlGenerator.Webhost.Common.Extensions;
 
 namespace Volkin.UrlGenerator.Webhost;
 
 public class Startup
 {
+    private readonly IConfiguration _сonfiguration;
+
+    public Startup(IConfiguration configuration)
+    {
+        _сonfiguration = configuration;
+    }
+
     public void ConfigureServices(IServiceCollection services)
     {
+        services.Configure<DatabaseOptions>(_сonfiguration.GetSection(nameof(DatabaseOptions)));
+
         services.AddDataAccess();
         services.AddApplication();
 
@@ -25,7 +35,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())// || env.EnvironmentName is "Docker")
+        if (env.IsDevelopment())
         {
             app.UseSwagger(options =>
             {
