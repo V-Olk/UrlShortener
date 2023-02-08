@@ -10,7 +10,8 @@ public static class Composer
     {
         services
             .AddMediatR(typeof(Composer))
-            .AddScoped<IBase36Service, Base36Service>();
+            .AddScoped<IBase36Service, Base36Service>()
+            .AddScoped<IFullUrlByShortResolver, FullUrlByShortResolver>();
 
         return services;
     }
