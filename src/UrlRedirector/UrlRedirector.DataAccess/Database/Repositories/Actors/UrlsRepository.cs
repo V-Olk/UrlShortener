@@ -21,8 +21,18 @@ namespace Volkin.UrlRedirector.DataAccess.Database.Repositories.Actors
 
         public async Task<Url?> GetFullUrl(Url url, CancellationToken ct)
         {
+            if (ct.IsCancellationRequested)
+                return null;
+
             await using var connection = new NpgsqlConnection(_databaseOptions.ConnectionString);
+
+            if (ct.IsCancellationRequested)
+                return null;
+
             await connection.OpenAsync(ct);
+
+            if (ct.IsCancellationRequested)
+                return null;
 
             return await connection.QueryFirstOrDefaultAsync<Url>(_dbCommandBuilder.BuildSelectFullUrlByIdCommand(url, ct));
         }

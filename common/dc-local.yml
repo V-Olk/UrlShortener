@@ -2,6 +2,15 @@ version: '3'
 
 services:
 
+  redis-cache-local:
+      image: redis:7.0-alpine
+      restart: always
+      ports:
+        - '6379:6379'
+      command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lfu #--save 20 1 --loglevel warning --requirepass pass
+      volumes: 
+        - redis-cachedata-local:/data
+
   urls-db-local:
     image: postgres:15-alpine
     container_name: urls-db-local
@@ -42,6 +51,7 @@ services:
 
 volumes:
   urls-pgdata-local:
+  redis-cachedata-local:
 
 networks:
   urls-shortener-local-network:
