@@ -18,8 +18,6 @@ namespace Volkin.UrlGenerator.Application.UseCases.GenerateUrl
 
         public async Task<GenerateUrlResult> Handle(GenerateUrlCommand request, CancellationToken ct)
         {
-            //TODO: validate url
-
             var id = await _urlsRepository.GetNextShortUrlId(ct);
             var shortUrl = _base36Service.Encode(id);
 

@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using FluentValidation;
 
 namespace Volkin.UrlGenerator.Webhost.Common.CustomExceptionMiddleware
 {
@@ -19,22 +20,27 @@ namespace Volkin.UrlGenerator.Webhost.Common.CustomExceptionMiddleware
             {
                 await _next(httpContext);
             }
+            catch (ValidationException ex)
+            {
+                await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest,
+                    "Validation failed: " + String.Join(Environment.NewLine, ex.Errors.Select(e => e.ErrorMessage)));
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Something went wrong");
-                await HandleExceptionAsync(httpContext);
+                await HandleExceptionAsync(httpContext, HttpStatusCode.InternalServerError, "Internal Server Error");
             }
         }
 
-        private static async Task HandleExceptionAsync(HttpContext context)
+        private static async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode, string errorMessage)
         {
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.StatusCode = (int)httpStatusCode;
 
-            await context.Response.WriteAsync(new ErrorDetails()
+            await context.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error"
+                Message = errorMessage
             }
             .ToString());
         }
