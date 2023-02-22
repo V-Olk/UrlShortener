@@ -7,23 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E5B244D-899
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volkin.UrlGenerator", "Volkin.UrlGenerator", "{1050C9D1-9EBF-48EF-B5A9-F2DD80CED1A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Application", "src\UrlGenerator\UrlGenerator.Application\Volkin.UrlGenerator.Application.csproj", "{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Application", "UrlGenerator\UrlGenerator.Application\Volkin.UrlGenerator.Application.csproj", "{EFB70CA6-CD31-4061-8292-AE4C9BEE511B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Webhost", "src\UrlGenerator\UrlGenerator.Webhost\Volkin.UrlGenerator.Webhost.csproj", "{591031CC-38DD-414A-A813-0074CCE37F31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Webhost", "UrlGenerator\UrlGenerator.Webhost\Volkin.UrlGenerator.Webhost.csproj", "{591031CC-38DD-414A-A813-0074CCE37F31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.DataAccess", "src\UrlGenerator\UrlGenerator.DataAccess\Volkin.UrlGenerator.DataAccess.csproj", "{08A93E31-A449-48CA-80C9-1E120041A77F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.DataAccess", "UrlGenerator\UrlGenerator.DataAccess\Volkin.UrlGenerator.DataAccess.csproj", "{08A93E31-A449-48CA-80C9-1E120041A77F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Domain", "src\UrlGenerator\UrlGenerator.Domain\Volkin.UrlGenerator.Domain.csproj", "{841F73E9-F317-4F15-8C7A-6D4754EE3B83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlGenerator.Domain", "UrlGenerator\UrlGenerator.Domain\Volkin.UrlGenerator.Domain.csproj", "{841F73E9-F317-4F15-8C7A-6D4754EE3B83}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Volkin.UrlRedirector", "Volkin.UrlRedirector", "{0857E96D-2BE2-446A-BCB9-A2848329A6C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Application", "src\UrlRedirector\UrlRedirector.Application\Volkin.UrlRedirector.Application.csproj", "{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Application", "UrlRedirector\UrlRedirector.Application\Volkin.UrlRedirector.Application.csproj", "{62EB8463-78EF-4E4C-9166-BC8AF1C7BA02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.DataAccess", "src\UrlRedirector\UrlRedirector.DataAccess\Volkin.UrlRedirector.DataAccess.csproj", "{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.DataAccess", "UrlRedirector\UrlRedirector.DataAccess\Volkin.UrlRedirector.DataAccess.csproj", "{A56C30CF-AA9D-4D0A-93CD-69AE85E7AA22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Domain", "src\UrlRedirector\UrlRedirector.Domain\Volkin.UrlRedirector.Domain.csproj", "{E6CD7424-C69A-496C-9F38-5D3929202C0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Domain", "UrlRedirector\UrlRedirector.Domain\Volkin.UrlRedirector.Domain.csproj", "{E6CD7424-C69A-496C-9F38-5D3929202C0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Webhost", "src\UrlRedirector\UrlRedirector.Webhost\Volkin.UrlRedirector.Webhost.csproj", "{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volkin.UrlRedirector.Webhost", "UrlRedirector\UrlRedirector.Webhost\Volkin.UrlRedirector.Webhost.csproj", "{F614BFCF-E755-4F50-B6D1-72B7B619A0C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
