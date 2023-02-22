@@ -1,0 +1,97 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: nginx:1.22-alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - url-generator-prod
+      - url-redirector-prod
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    networks:
+      - urls-shortener-prod-network
+
+  url-redirector-prod:
+    build: ../src/UrlRedirector/
+    stdin_open: true
+    restart: always
+    environment:
+      - Environment=Production
+      - DatabaseOptions__ConnectionString=Server=pgbouncer-prod:5432;Database=urls_db;User ID=dbuser;Password=docker
+      - RedisOptions__ConnectionString=redis-cache-prod,abortConnect=false
+      - ASPNETCORE_URLS=http://+:5000
+    depends_on:
+      - pgbouncer-prod
+      - redis-cache-prod
+    networks:
+      - urls-shortener-prod-network
+
+  url-generator-prod:
+      build: ../src/UrlGenerator/
+      stdin_open: true
+      restart: always
+      environment:
+        - Environment=Production
+        - DatabaseOptions__ConnectionString=Server=pgbouncer-prod:5432;Database=urls_db;User ID=dbuser;Password=docker
+        - ASPNETCORE_URLS=http://+:6000
+      depends_on:
+        - pgbouncer-prod
+        - redis-cache-prod
+      networks:
+       - urls-shortener-prod-network
+
+  redis-cache-prod:
+      image: redis:7.0-alpine
+      restart: always
+      command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lfu #--save 20 1 --loglevel warning --requirepass pass
+      volumes: 
+        - redis-cachedata-prod:/data
+      networks:
+        - urls-shortener-prod-network
+
+  urls-db-prod:
+    image: postgres:15-alpine
+    container_name: urls-db-prod
+    restart: always
+    volumes:
+      - urls-pgdata-prod:/var/lib/postgresql/data
+      - ./init-urls-table.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=dbuser
+      - POSTGRES_DB=urls_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbuser -d urls_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - urls-shortener-prod-network
+
+  pgbouncer-prod:
+    image: edoburu/pgbouncer:1.18.0
+    volumes:
+      - ./userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    environment:
+       - DB_USER=dbuser
+       - DB_PASSWORD=docker
+       - DB_HOST=urls-db-prod
+       - DB_NAME=urls_db
+       - POOL_MODE=transaction
+       - ADMIN_USERS=postgres,dbuser
+       - AUTH_TYPE=scram-sha-256
+    depends_on:
+      - urls-db-prod
+    networks:
+      - urls-shortener-prod-network
+
+volumes:
+  urls-pgdata-prod:
+  redis-cachedata-prod:
+
+networks:
+  urls-shortener-prod-network:
