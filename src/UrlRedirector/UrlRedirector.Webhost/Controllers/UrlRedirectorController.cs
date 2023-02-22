@@ -5,7 +5,6 @@ using Volkin.UrlRedirector.Webhost.Contracts.Responses;
 namespace Volkin.UrlRedirector.Webhost.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
     public class UrlRedirectorController : MediatRControllerBase
     {
         [HttpGet("{id}")]
