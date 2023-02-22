@@ -10,6 +10,8 @@ services:
       command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lfu #--save 20 1 --loglevel warning --requirepass pass
       volumes: 
         - redis-cachedata-local:/data
+      networks:
+        - urls-shortener-local-network
 
   urls-db-local:
     image: postgres:15-alpine
