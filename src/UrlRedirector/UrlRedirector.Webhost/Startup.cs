@@ -19,7 +19,7 @@ public class Startup
     {
         services.Configure<DatabaseOptions>(_сonfiguration.GetSection(nameof(DatabaseOptions)));
 
-        services.AddDataAccess();
+        services.AddDataAccess(_сonfiguration);
         services.AddApplication();
 
         services.AddControllers(x => x.SuppressAsyncSuffixInActionNames = true);
@@ -47,12 +47,7 @@ public class Startup
 
         app.ConfigureCustomExceptionMiddleware();
 
-        app.UseHttpsRedirection();
-
         app.UseRouting();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {
