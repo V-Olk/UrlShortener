@@ -9,6 +9,6 @@ public class MediatRControllerBase : ControllerBase
         HttpContext.RequestServices.GetService<IMediator>() 
         ?? throw new InvalidOperationException("Mediator is not registered");
 
-    protected Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken ct)
+    protected Task<TResponse?> Send<TResponse>(IRequest<TResponse?> request, CancellationToken ct)
         => Mediator.Send(request, ct);
 }

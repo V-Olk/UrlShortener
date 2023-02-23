@@ -8,14 +8,11 @@ namespace Volkin.UrlRedirector.Webhost.Controllers
     public class UrlRedirectorController : MediatRControllerBase
     {
         [HttpGet("{id}")]
-        public async Task<ActionResult<GenerateUrlResponse>> GenerateUrl(string id, CancellationToken ct)
+        public async Task<ActionResult<GenerateUrlResponse>> Redirect(string id, CancellationToken ct)
         {
-            GetRedirectUrlResult getRedirectUrlResult = await Send(new GetRedirectUrlCommand { ShortUrl = id }, ct);
+            GetRedirectUrlResult? getRedirectUrlResult = await Send(new GetRedirectUrlCommand { ShortUrl = id }, ct);
 
-            if (String.IsNullOrWhiteSpace(getRedirectUrlResult.Url))
-                return NotFound();
-
-            return Redirect(getRedirectUrlResult.Url);
+            return getRedirectUrlResult is null ?  NotFound() : Redirect(getRedirectUrlResult.Url!);
         }
     }
 }

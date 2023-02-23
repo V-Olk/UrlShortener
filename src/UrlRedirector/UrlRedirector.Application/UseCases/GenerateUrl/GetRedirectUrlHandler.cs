@@ -3,7 +3,7 @@ using Volkin.UrlRedirector.Domain.UseCases.Handlers;
 
 namespace Volkin.UrlRedirector.Application.UseCases.GenerateUrl
 {
-    internal class GetRedirectUrlHandler : ICommandHandler<GetRedirectUrlCommand, GetRedirectUrlResult>
+    internal class GetRedirectUrlHandler : ICommandHandler<GetRedirectUrlCommand, GetRedirectUrlResult?>
     {
         private readonly IFullUrlByShortResolver _fullUrlByShortResolver;
 
@@ -12,7 +12,7 @@ namespace Volkin.UrlRedirector.Application.UseCases.GenerateUrl
             _fullUrlByShortResolver = fullUrlByShortResolver;
         }
 
-        public Task<GetRedirectUrlResult> Handle(GetRedirectUrlCommand request, CancellationToken ct)
+        public Task<GetRedirectUrlResult?> Handle(GetRedirectUrlCommand request, CancellationToken ct)
             => _fullUrlByShortResolver.Resolve(request.ShortUrl, ct);
     }
 }
