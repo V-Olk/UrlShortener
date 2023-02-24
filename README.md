@@ -62,4 +62,4 @@ The **purple** steps describe the process of getting *short* link *by a long*.
 
 The **green** steps describe the process of getting *source* link *by a short*.
 
-![architecture](common\imgs\architecture.png)
+![architecture](.\common\imgs\architecture.png)
