@@ -62,4 +62,4 @@ The **purple** steps describe the process of getting *short* link *by a long*.
 
 The **green** steps describe the process of getting *source* link *by a short*.
 
-![architecture](.\common\imgs\architecture.png)
+![architecture](https://raw.githubusercontent.com/V-Olk/UrlShortener/master/common/imgs/architecture.png)
