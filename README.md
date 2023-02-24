@@ -18,7 +18,7 @@ Now you can get a short uri for any url with a simple post request:
 http://localhost/shorten
 ~~~
 
-Body:
+Body with url which needs to be shortened:
 
 ~~~json
 {
