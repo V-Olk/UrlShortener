@@ -1,4 +1,4 @@
-﻿using Volkin.UrlGenerator.Domain.UseCases;
+﻿using Volkin.UrlGenerator.Application.UseCases.Base;
 
 namespace Volkin.UrlGenerator.Application.UseCases.GenerateUrl
 {

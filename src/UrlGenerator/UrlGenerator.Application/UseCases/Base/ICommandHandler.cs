@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Volkin.UrlGenerator.Domain.UseCases.Handlers
+namespace Volkin.UrlGenerator.Application.UseCases.Base
 {
     public interface ICommandHandler<in TCommand, TResponse>
         : IRequestHandler<TCommand, TResponse>

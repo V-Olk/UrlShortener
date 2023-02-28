@@ -1,8 +1,8 @@
 ﻿using Volkin.UrlGenerator.Domain.Models;
 
-namespace Volkin.UrlGenerator.Domain.DataAccess.Repositories.Actors
+namespace Volkin.UrlGenerator.Domain.DataAccess.Repositories
 {
-    public interface IUrlsRepository
+    public interface IUrlRepository
     {
         public Task<Url?> CreateShortUrl(Url shortUrl, CancellationToken ct);
 
