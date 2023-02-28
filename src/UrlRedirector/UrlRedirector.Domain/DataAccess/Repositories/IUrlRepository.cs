@@ -1,8 +1,8 @@
 ﻿using Volkin.UrlRedirector.Domain.Models;
 
-namespace Volkin.UrlRedirector.Domain.DataAccess.Repositories.Actors
+namespace Volkin.UrlRedirector.Domain.DataAccess.Repositories
 {
-    public interface IUrlsRepository
+    public interface IUrlRepository
     {
         public Task<Url?> GetFullUrl(Url shortUrl, CancellationToken ct);
     }

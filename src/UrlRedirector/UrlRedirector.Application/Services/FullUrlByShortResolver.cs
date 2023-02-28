@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Volkin.UrlRedirector.Application.UseCases.GenerateUrl;
 using Volkin.UrlRedirector.Domain.DataAccess.Cache;
-using Volkin.UrlRedirector.Domain.DataAccess.Repositories.Actors;
+using Volkin.UrlRedirector.Domain.DataAccess.Repositories;
 using Volkin.UrlRedirector.Domain.Models;
 
 namespace Volkin.UrlRedirector.Application.Services
@@ -9,14 +9,14 @@ namespace Volkin.UrlRedirector.Application.Services
     internal class FullUrlByShortResolver : IFullUrlByShortResolver
     {
         private readonly ILogger _logger;
-        private readonly IUrlsRepository _urlsRepository;
+        private readonly IUrlRepository _urlRepository;
         private readonly IBase36Service _base36Service;
         private readonly IRedisStore _redisStore;
 
-        public FullUrlByShortResolver(ILogger<FullUrlByShortResolver> logger, IUrlsRepository urlsRepository, IBase36Service base36Service, IRedisStore redisStore)
+        public FullUrlByShortResolver(ILogger<FullUrlByShortResolver> logger, IUrlRepository urlRepository, IBase36Service base36Service, IRedisStore redisStore)
         {
             _logger = logger;
-            _urlsRepository = urlsRepository;
+            _urlRepository = urlRepository;
             _base36Service = base36Service;
             _redisStore = redisStore;
         }
@@ -68,7 +68,7 @@ namespace Volkin.UrlRedirector.Application.Services
             if (cts.Token.IsCancellationRequested)
                 return String.Empty;
 
-            url = await _urlsRepository.GetFullUrl(url, cts.Token);
+            url = await _urlRepository.GetFullUrl(url, cts.Token);
 
             if (!String.IsNullOrWhiteSpace(url?.Full))
                 cts.Cancel();

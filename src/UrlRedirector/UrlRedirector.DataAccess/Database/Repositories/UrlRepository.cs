@@ -2,18 +2,18 @@
 using Microsoft.Extensions.Options;
 using Npgsql;
 using Volkin.UrlRedirector.DataAccess.Database.CommandBuilder;
-using Volkin.UrlRedirector.Domain.DataAccess.Repositories.Actors;
+using Volkin.UrlRedirector.Domain.DataAccess.Repositories;
 using Volkin.UrlRedirector.Domain.Models;
 using Volkin.UrlRedirector.Domain.Options;
 
-namespace Volkin.UrlRedirector.DataAccess.Database.Repositories.Actors
+namespace Volkin.UrlRedirector.DataAccess.Database.Repositories
 {
-    internal class UrlsRepository : IUrlsRepository
+    internal class UrlRepository : IUrlRepository
     {
         private readonly DatabaseOptions _databaseOptions;
         private readonly IDatabaseCommandBuilder _dbCommandBuilder;
 
-        public UrlsRepository(IOptions<DatabaseOptions> databaseOptions, IDatabaseCommandBuilder dbCommandBuilder)
+        public UrlRepository(IOptions<DatabaseOptions> databaseOptions, IDatabaseCommandBuilder dbCommandBuilder)
         {
             _dbCommandBuilder = dbCommandBuilder;
             _databaseOptions = databaseOptions.Value;

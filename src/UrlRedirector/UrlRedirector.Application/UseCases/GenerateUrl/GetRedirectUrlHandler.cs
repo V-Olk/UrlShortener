@@ -1,5 +1,5 @@
 ﻿using Volkin.UrlRedirector.Application.Services;
-using Volkin.UrlRedirector.Domain.UseCases.Handlers;
+using Volkin.UrlRedirector.Application.UseCases.Base;
 
 namespace Volkin.UrlRedirector.Application.UseCases.GenerateUrl
 {

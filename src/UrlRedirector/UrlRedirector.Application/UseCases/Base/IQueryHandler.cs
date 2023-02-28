@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Volkin.UrlRedirector.Domain.UseCases.Handlers
+namespace Volkin.UrlRedirector.Application.UseCases.Base
 {
     public interface IQueryHandler<in TQuery, TResponse>
         : IRequestHandler<TQuery, TResponse>

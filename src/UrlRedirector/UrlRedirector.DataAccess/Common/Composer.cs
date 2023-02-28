@@ -4,9 +4,9 @@ using StackExchange.Redis;
 using Volkin.UrlRedirector.DataAccess.Common.Exceptions;
 using Volkin.UrlRedirector.DataAccess.Database.Cache;
 using Volkin.UrlRedirector.DataAccess.Database.CommandBuilder;
-using Volkin.UrlRedirector.DataAccess.Database.Repositories.Actors;
+using Volkin.UrlRedirector.DataAccess.Database.Repositories;
 using Volkin.UrlRedirector.Domain.DataAccess.Cache;
-using Volkin.UrlRedirector.Domain.DataAccess.Repositories.Actors;
+using Volkin.UrlRedirector.Domain.DataAccess.Repositories;
 
 namespace Volkin.UrlRedirector.DataAccess.Common;
 
@@ -21,7 +21,7 @@ public static class Composer
                   ?? throw new ConfigurationMissingException(RedisConStringMissing);
 
         services
-            .AddScoped<IUrlsRepository, UrlsRepository>()
+            .AddScoped<IUrlRepository, UrlRepository>()
             .AddScoped<IDatabaseCommandBuilder, DatabaseCommandBuilder>()
             .AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnectionString))
             .AddSingleton<IRedisStore, RedisStore>();
