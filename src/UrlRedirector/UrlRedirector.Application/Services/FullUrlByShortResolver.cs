@@ -23,34 +23,40 @@ namespace Volkin.UrlRedirector.Application.Services
 
         public async Task<GetRedirectUrlResult?> Resolve(string shortUrl, CancellationToken ct)
         {
-            string?[] tasksResult;
+            using var childCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
 
-            using (var childCts = CancellationTokenSource.CreateLinkedTokenSource(ct))
-            {
-                var getCachedValue = GetFullUrlFromRedis(shortUrl, childCts);
-                var getDbValue = GetFullUrlFromDb(shortUrl, childCts);
+            var getCachedValue = GetFullUrlFromRedis(shortUrl, childCts);
+            var getDbValue = GetFullUrlFromDb(shortUrl, childCts);
 
-                tasksResult = await Task.WhenAll(getCachedValue, getDbValue);
-            }
+            var getUrlTask = await Task.WhenAny(getCachedValue, getDbValue);
 
-            if (tasksResult[0] is { } cachedResult && !String.IsNullOrEmpty(cachedResult))
-            {
-                _logger.LogInformation("Got cached value {Value} by {ShortUrl}", cachedResult, shortUrl);
+            if (!String.IsNullOrWhiteSpace(getUrlTask.Result))
+                return GetResultFromCompletedTask(getUrlTask, getDbValue, shortUrl, ct);
 
-                return new GetRedirectUrlResult { Url = cachedResult };
-            }
+            getUrlTask = getUrlTask == getCachedValue ? getDbValue : getCachedValue;
 
-            if (tasksResult[1] is { } dbResult && !String.IsNullOrEmpty(dbResult))
-            {
-                _logger.LogInformation("Got db value {Value} by {ShortUrl}", dbResult, shortUrl);
+            if (!String.IsNullOrWhiteSpace(await getUrlTask))
+                return GetResultFromCompletedTask(getUrlTask, getDbValue, shortUrl, ct);
 
-                _ = Task.Run(async () => await _redisStore.SetString(shortUrl, dbResult, ct), ct);
-                
-                return new GetRedirectUrlResult {Url = dbResult};
-            }
-
-            _logger.LogInformation("Got no value by {ShortUrl}", shortUrl);
+            _logger.LogDebug("Got no value by {ShortUrl}", shortUrl);
             return default;
+        }
+
+        private GetRedirectUrlResult GetResultFromCompletedTask(Task<string?> getUrlTask, Task<string?> getDbValueTask,
+            string shortUrl, CancellationToken ct)
+        {
+            if (getUrlTask == getDbValueTask)
+            {
+                _logger.LogDebug("Got db value {Value} by {ShortUrl}", getUrlTask.Result, shortUrl);
+
+                _ = Task.Run(() => _redisStore.SetString(shortUrl, getUrlTask.Result!, ct), ct);
+            }
+            else
+            {
+                _logger.LogDebug("Got cached value {Value} by {ShortUrl}", getUrlTask.Result, shortUrl);
+            }
+
+            return new GetRedirectUrlResult { Url = getUrlTask.Result };
         }
 
         private async Task<string?> GetFullUrlFromDb(string shortUrl, CancellationTokenSource cts)
